@@ -199,6 +199,13 @@ the repo copy (it adds `--root-path /telemetria` and the UDP port) — edit the
 
 ## 8. Troubleshooting
 
+**`./scripts/deploy.sh: Permission denied` on a fresh clone.** The executable
+bit is not set on the checkout. It is tracked as `100755` in git, so a plain
+`git pull` restores it; otherwise `chmod +x scripts/deploy.sh`, or run it as
+`bash scripts/deploy.sh`. Run it as a **normal user**, not `sudo
+./scripts/deploy.sh` — the script self-escalates with `sudo` only for the
+`rsync` / `chown` / `mkdir` steps.
+
 **Assets return `403` while `index.html` is `200`.** The asset rule is a regex
 `location` using `alias` without captures — see the note in section 4. Make it a
 prefix location.
