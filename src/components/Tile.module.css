@@ -1,0 +1,65 @@
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-4) var(--space-4);
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  text-align: center;
+  transition:
+    border-color var(--dur-1) var(--ease),
+    background-color var(--dur-1) var(--ease);
+  animation: tileIn 480ms var(--ease) both;
+  animation-delay: calc(min(var(--i, 0), 14) * 45ms);
+}
+
+a.tile,
+button.tile {
+  cursor: pointer;
+}
+
+a.tile:hover,
+button.tile:hover {
+  border-color: var(--signal);
+  background: var(--surface-1);
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Görsel (pist silueti / pilot fotoğrafı) hover'da hafif büyür.
+   `.tileMedia` global bir kanca — RacesRoute/DriversRoute görsele bu sınıfı ekler. */
+:global(.tileMedia) {
+  transition: transform var(--dur-2) var(--ease-pan);
+}
+
+a.tile:hover :global(.tileMedia),
+button.tile:hover :global(.tileMedia) {
+  transform: scale(1.08);
+}
+
+@keyframes tileIn {
+  from {
+    opacity: 0;
+    transform: translateX(72px) skewX(-7deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) skewX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    animation: none;
+  }
+  a.tile:hover :global(.tileMedia),
+  button.tile:hover :global(.tileMedia) {
+    transform: none;
+  }
+}

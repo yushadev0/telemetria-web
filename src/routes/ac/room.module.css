@@ -1,0 +1,124 @@
+/* AC oda girişi — Pit Wall: keskin, mono, hairline. */
+
+.wrap {
+  padding: var(--space-10) var(--space-4) var(--space-16);
+  max-width: 460px;
+}
+
+.tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--line-strong);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--text-dim);
+}
+
+.title {
+  margin: var(--space-4) 0 var(--space-6);
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.title::before {
+  content: '> ';
+  color: var(--signal);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--line-strong);
+  background: var(--surface-1);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.input::placeholder {
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: -1px;
+}
+
+.shake {
+  animation: shake 0.16s var(--ease) 0s 3;
+  border-color: var(--neg);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    translate: 0;
+  }
+  25% {
+    translate: -5px 0;
+  }
+  75% {
+    translate: 5px 0;
+  }
+}
+
+.connect {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--signal);
+  background: var(--signal);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+}
+
+.connect:hover {
+  background: transparent;
+  color: var(--signal);
+}
+
+.status {
+  min-height: 1.4em;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+}
+
+.status[data-tone='error'] {
+  color: var(--neg);
+}
+
+.status[data-tone='ok'] {
+  color: var(--pos);
+}
+
+.hint {
+  margin-top: var(--space-6);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-dim);
+  max-width: 52ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shake {
+    animation: none;
+  }
+}

@@ -1,0 +1,74 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-4);
+  text-align: left;
+  color: var(--text);
+  border-bottom: 1px solid var(--line);
+  border-left: 2px solid transparent;
+  background: var(--bg);
+  transition:
+    background-color var(--dur-1) var(--ease),
+    border-left-color var(--dur-1) var(--ease);
+  animation: rowIn var(--dur-2) var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 35ms);
+}
+
+a.row,
+button.row {
+  cursor: pointer;
+}
+
+a.row:hover:not(.disabled),
+button.row:hover:not(.disabled) {
+  background: var(--surface-1);
+  border-left-color: var(--signal);
+}
+
+.content {
+  min-width: 0;
+  flex: 1;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--text-faint);
+  transition:
+    color var(--dur-1) var(--ease),
+    transform var(--dur-1) var(--ease);
+}
+
+a.row:hover:not(.disabled) .chevron,
+button.row:hover:not(.disabled) .chevron {
+  color: var(--signal);
+  transform: translateX(3px);
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@keyframes rowIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row {
+    animation: none;
+  }
+  a.row:hover .chevron,
+  button.row:hover .chevron {
+    transform: none;
+  }
+}

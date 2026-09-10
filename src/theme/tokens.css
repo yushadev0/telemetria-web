@@ -1,0 +1,151 @@
+/* ==========================================================================
+   Telemetria — "Pit Wall" tasarım token seti
+   Yön: timing-monitor / yarış mühendisi ekranı. Yoğun, tabular, hairline ızgara,
+   keskin köşeler, monospace rakamlar. Nötr-liderli palet; kırmızı yalnız SİNYAL.
+   :root = AÇIK tema. Koyu tema: @media (prefers-color-scheme) + [data-theme].
+   ========================================================================== */
+
+:root {
+  /* --- yüzeyler & çizgiler --- */
+  --bg: #f5f5f6;
+  --surface-1: #ffffff;
+  --surface-2: #ececee;
+  --line: #dedee1; /* hairline ızgara */
+  --line-strong: #c4c4c9;
+
+  /* --- metin --- */
+  --text: #17171a;
+  --text-dim: #55555c;
+  --text-faint: #8a8a93;
+
+  /* --- sinyal (F1 kırmızısı) — aktif satır, canlı nokta, uyarı, birincil eylem --- */
+  --signal: #d40000;
+  --signal-weak: rgba(212, 0, 0, 0.1);
+
+  /* --- anlamsal --- */
+  --data: #0b8f86; /* delta / canlı değer (cyan, açık zeminde koyultuldu) */
+  --pos: #0e9f63; /* PB, kazanç, gaz */
+  --neg: #e5352b; /* fren, ceza, kayıp — kırmızıdan farklı ton */
+  --warn: #b9770b; /* geçersiz tur, "öğreniliyor" */
+  --purple: #8a3fd6; /* session-best sektör / fastest lap */
+
+  /* --- pist siluet PNG filtresi (koyu çizgili kaynak) --- */
+  --track-filter: invert(0) opacity(0.5);
+
+  /* --- lastik compound --- */
+  --tyre-soft: #e5352b;
+  --tyre-medium: #b9770b;
+  --tyre-hard: #55555c;
+  --tyre-intermediate: #0e9f63;
+  --tyre-wet: #0b6fd4;
+  --tyre-unknown: #8a8a93;
+
+  /* --- runtime'da inline set edilir (pilot rengi) --- */
+  --team-color: var(--signal);
+
+  /* ---------------------------------------------------------------------
+     Tema-bağımsız sabitler
+     --------------------------------------------------------------------- */
+
+  /* köşe — pit wall = keskin */
+  --radius: 0px;
+  --radius-chip: 2px;
+
+  /* 4px grid */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* hareket — az ve amaçlı */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-1: 120ms;
+  --dur-2: 180ms;
+
+  /* tipografi — mono ana ses, sans yalnız uzun metin */
+  --font-mono:
+    'IBM Plex Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* satır yükseklikleri */
+  --masthead-h: 48px;
+  --subbar-h: 44px;
+
+  color-scheme: light;
+}
+
+/* --------------------------------------------------------------------------
+   KOYU TEMA — sistem tercihi (explicit "light" seçilmediyse)
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0a0a0b;
+    --surface-1: #131316;
+    --surface-2: #1b1b1f;
+    --line: #26262b;
+    --line-strong: #33333a;
+
+    --text: #f2f2f3;
+    --text-dim: #a0a0a8;
+    --text-faint: #6a6a72;
+
+    --signal: #e10600;
+    --signal-weak: rgba(225, 6, 0, 0.12);
+
+    --data: #35e0d0;
+    --pos: #16c784;
+    --neg: #ff3b30;
+    --warn: #f5a623;
+    --purple: #b76cff;
+
+    --track-filter: invert(1) opacity(0.55);
+
+    --tyre-soft: #ff3b30;
+    --tyre-medium: #f5a623;
+    --tyre-hard: #d8d8dd;
+    --tyre-intermediate: #16c784;
+    --tyre-wet: #3591ff;
+    --tyre-unknown: #6a6a72;
+
+    color-scheme: dark;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   KOYU TEMA — explicit toggle
+   -------------------------------------------------------------------------- */
+:root[data-theme='dark'] {
+  --bg: #0a0a0b;
+  --surface-1: #131316;
+  --surface-2: #1b1b1f;
+  --line: #26262b;
+  --line-strong: #33333a;
+
+  --text: #f2f2f3;
+  --text-dim: #a0a0a8;
+  --text-faint: #6a6a72;
+
+  --signal: #e10600;
+  --signal-weak: rgba(225, 6, 0, 0.12);
+
+  --data: #35e0d0;
+  --pos: #16c784;
+  --neg: #ff3b30;
+  --warn: #f5a623;
+  --purple: #b76cff;
+
+  --tyre-soft: #ff3b30;
+  --tyre-medium: #f5a623;
+  --tyre-hard: #d8d8dd;
+  --tyre-intermediate: #16c784;
+  --tyre-wet: #3591ff;
+  --tyre-unknown: #6a6a72;
+
+  color-scheme: dark;
+}
